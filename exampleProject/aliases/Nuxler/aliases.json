@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Begins",
+        "text": "begins ",
+        "matching": "begins"
+    },
+    {
+        "name": "Regex",
+        "text": "kill (\\w+)",
+        "matching": "regexp"
+    },
+    {
+        "name": "Exact",
+        "text": "thisthingexactly",
+        "matching": "exact"
+    }
+]

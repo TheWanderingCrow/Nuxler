@@ -1,6 +1,6 @@
 {
     "type": "group",
-    "name": "nuxler",
+    "name": "Nuxler",
     "enabled": true,
     "items": [
         {
@@ -179,5 +179,5 @@
             "evsubtype": "IRE.Target.Set"
         }
     ],
-    "description": ""
+    "description": "Demo Nuxler Project"
 }

@@ -1,6 +1,6 @@
 <?php
 
-class NuxObject {
+abstract class NuxObject {
 
     private string $name;
     private bool $enabled;
@@ -9,5 +9,7 @@ class NuxObject {
         $this->name = $name;
         $this->enabled = $enabled;
     }
+
+    protected abstract function compile(): string;
 
 }

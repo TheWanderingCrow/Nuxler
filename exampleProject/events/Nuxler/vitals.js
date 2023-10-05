@@ -1,0 +1,1 @@
+display_notice("The vitals event just fired off");

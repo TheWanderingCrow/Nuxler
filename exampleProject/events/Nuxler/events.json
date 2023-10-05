@@ -1,0 +1,7 @@
+[
+    {
+        "name": "vitals",
+        "evtype": "GMCP",
+        "evsubtype": "Char.Vitals"
+    }
+]

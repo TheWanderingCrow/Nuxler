@@ -45,7 +45,6 @@ NOTE: A subfolder in your directory tree will be considered a group, so group de
 
 ## Function
 ```
-"type": "function"
 "name": string,
 "enabled": bool
 ```
@@ -64,7 +63,6 @@ Text is what the alias will match with. Valid matching types are "begins", "rege
 
 ## Trigger
 ```
-"type": "trigger"
 "name": string
 "enabled": bool
 "text": string
@@ -76,7 +74,7 @@ Text is what the trigger will match with. Valid matching types are "substring", 
 
 ## Event
 ```
-"type": "event"
+"name": string
 "enabled": bool
 "evtype": string
 "evsubtype": string
@@ -97,5 +95,9 @@ Valid types are: "alias", "event", "function", "trigger".
 If enabled is omited in a .json file, then the object is assumed to be enabled.
 
 ### Aliases
+whole_words defaults to true
+case_sensitive defaults to false
+
+### Triggers
 whole_words defaults to true
 case_sensitive defaults to false

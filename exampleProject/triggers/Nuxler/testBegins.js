@@ -1,0 +1,1 @@
+display_notice("Begins with triggered");

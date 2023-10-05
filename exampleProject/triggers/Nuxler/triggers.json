@@ -1,0 +1,17 @@
+[
+    {
+        "name": "testBegins",
+        "text": "begins",
+        "matching": "begins"
+    },
+    {
+        "name": "testRegex",
+        "text": "Welcome to (\\w+)",
+        "matching": "regexp"
+    },
+    {
+        "name": "testExact",
+        "text": "thisthingexactly",
+        "matching": "exact"
+    }
+]

@@ -59,6 +59,12 @@ class NuxBackend
 
         // Step 3: Map directories, subdirectories and files
         self::directoryMap();
+
+        // Step 4: Generate groups for all subdirectories of nux_directories
+
+        // Step 5: Generate objects for each group
+
+        // Step 6: Compile
     }
 
     private static function sanityCheck()

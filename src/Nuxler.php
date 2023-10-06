@@ -9,13 +9,11 @@ if ($argc < 2) {
     echo "php Nuxler <options>\n";
     echo "-g/--generate <project>: Generate a blank Nuxler project\n";
     echo "-c/--compile: Compile your project to .nxs\n";
-    echo "-o/--output <filename>: Select file name for output, default is directory name\n";
 } else {
-    $shortops = 'g:co:';
+    $shortops = 'g:c';
     $longops = [
         'generate:',
-        'compile',
-        'output:'
+        'compile'
     ];
     
     $options = getopt($shortops, $longops);
@@ -27,12 +25,6 @@ if ($argc < 2) {
                 break;
             case 'generate':
                 NuxBackend::generate($value ?? "template");
-                break;
-            case 'o':
-                NuxBackend::setProjectName($value);
-                break;
-            case 'output':
-                NuxBackend::setProjectName($value);
                 break;
             case 'c':
                 NuxBackend::stageCompile();

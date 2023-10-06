@@ -1,21 +1,21 @@
 <?php
 
-enum MatchType {
-    case regexp;
-    case begins;
-    case exact;
-    case substring;
+enum MatchType: string {
+    case regexp = 'regexp';
+    case begins = 'begins';
+    case exact = 'exact';
+    case substring = 'substring';
 }
 
 abstract class NuxMatchable extends NuxScriptable {
     
-    private string $text;
-    private MatchType $matching;
-    private bool $whole_words;
-    private bool $case_sensitive;
+    protected string $text;
+    protected MatchType $matching;
+    protected bool $whole_words;
+    protected bool $case_sensitive;
 
-    public function __construct(string $name, string $text, MatchType $matching, bool $enabled = true, bool $whole_words = true, bool $case_sensitive = true) {
-        parent::__construct($name, $enabled);
+    public function __construct(string $name, string $text, MatchType $matching, string $scriptPath, bool $enabled = true, bool $whole_words = true, bool $case_sensitive = true) {
+        parent::__construct($name, $scriptPath, $enabled);
         $this->text = $text;
         $this->matching = $matching;
         $this->whole_words = $whole_words;

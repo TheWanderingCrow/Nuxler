@@ -2,8 +2,8 @@
 
 abstract class NuxObject {
 
-    private string $name;
-    private bool $enabled;
+    protected string $name;
+    protected bool $enabled;
 
     public function __construct(string $name, bool $enabled = true) {
         $this->name = $name;

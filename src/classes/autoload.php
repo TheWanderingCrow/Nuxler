@@ -1,5 +1,6 @@
 <?php
 
+require('NuxBackend.php');
 require('NuxObject.php');
 require('NuxScriptable.php');
 require('NuxMatchable.php');

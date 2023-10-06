@@ -10,7 +10,7 @@ enum MatchType {
 abstract class NuxMatchable extends NuxScriptable {
     
     private string $text;
-    private string $matching;
+    private MatchType $matching;
     private bool $whole_words;
     private bool $case_sensitive;
 

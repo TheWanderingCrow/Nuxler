@@ -14,6 +14,24 @@ class NuxGroup extends NuxObject {
     }
 
     public function addItem(NuxObject $item) {
-        
+        array_push($this->items, $item);
+    }
+
+    public function compile(): string {
+        $i = [];
+        foreach ($this->items as $item) {
+            array_push($i, $item->compile());
+        }
+
+        $i = json_encode($i);
+
+        $data = [
+            'type'=>'group',
+            'name'=>$this->name,
+            'enabled'=>$this->enabled,
+            'items'=>$i
+        ];
+
+        return json_encode($data);
     }
 }

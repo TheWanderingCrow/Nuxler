@@ -10,6 +10,9 @@ abstract class NuxObject {
         $this->enabled = $enabled;
     }
 
+    /**
+     * @return string JSON encoded data per the Nexus 3 specification
+     */
     protected abstract function compile(): string;
 
 }

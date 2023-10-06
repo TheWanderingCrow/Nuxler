@@ -1,6 +1,6 @@
 <?php
 
-class NuxAlias extends NuxMatchable {
+class NuxTrigger extends NuxMatchable {
 
     public function __construct(string $name, string $text, \MatchType $matching, string $scriptPath, bool $enabled = true, bool $whole_words = true, bool $case_sensitive = true) {
         parent::__construct($name, $text, $matching, $scriptPath, $enabled, $whole_words, $case_sensitive);

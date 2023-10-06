@@ -32,6 +32,13 @@ class NuxPackage {
     }
 
     /**
+     * @param NuxObject $item This is an object to be pushed into the package
+     */
+    public function pushItem(NuxObject $item) {
+
+    }
+
+    /**
      * Serialize package into a .nxs file for loading into Nexus
      * @return int returns 0 on success
      */

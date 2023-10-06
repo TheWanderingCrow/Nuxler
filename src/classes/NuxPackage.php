@@ -27,8 +27,16 @@ class NuxPackage {
             $data = json_decode($data, true);
             return $data;
         } else {
+            trigger_error("No nuxspec supplied in directory", E_USER_NOTICE);
             return null;
         }
+    }
+
+    /**
+     * @return string name of the project
+     */
+    public function getName() {
+        return $this->name;
     }
 
     /**

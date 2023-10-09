@@ -61,6 +61,7 @@ class NuxBackend
         $map = self::directoryMap();
 
         // Step 4: Recurse into directories, generating objects on the fly
+        self::generateObjects($map);
 
         // Step 5: Compile all
     }
@@ -77,9 +78,11 @@ class NuxBackend
     /**
      * @return array Complete map of directories and files
      */
-    private static function directoryMap()
+    public static function directoryMap($dir = null)
     {
-        $dir = getcwd();
+        if (is_null($dir)) {
+            $dir = getcwd();
+        }
         $result = array();
         $cdir = scandir($dir);
 
@@ -94,5 +97,30 @@ class NuxBackend
         }
 
         return $result;
+    }
+
+    public static function generateObjects(array|string $directory, array $objects = []) {
+        // enter directory
+        $workingDir = $directory;
+
+        // map directory
+        $result = self::directoryMap($workingDir);
+
+        // check for subdirs
+        $flag = false;
+        foreach ($result as $possibleDir) {
+            if (is_dir($possibleDir)) {
+                $flag = $possibleDir;
+                break;
+            }
+        }
+
+        // if flag set
+        $objects = self::generateObjects($flag, $objects);
+
+        // if not
+        foreach ($result as $obj) {
+            
+        }
     }
 }

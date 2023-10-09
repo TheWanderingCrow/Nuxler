@@ -14,7 +14,7 @@ class NuxGroup extends NuxObject {
     }
 
     public function addItem(NuxObject $item) {
-        array_push($this->items, $item);
+        $this->items[] = $item;
     }
 
     public function compile(): string {

@@ -56,14 +56,16 @@ class NuxBackend
         // Step 2: sanity check to make sure all directories are present
         self::sanityCheck();
 
+        // Step 3: Create base groups
+        $baseGroups = [new NuxGroup('aliases'), new NuxGroup('events'), new NuxGroup('functions'), new NuxGroup('triggers')];
 
-        // Step 3: Map directories, subdirectories and files
+        // Step 4: Map directories, subdirectories and files
         $map = self::directoryMap();
 
-        // Step 4: Recurse into directories, generating objects on the fly
-        self::generateObjects($map);
+        // Step 5: Recurse into directories, generating objects on the fly
+        self::generateObjects($map, $baseGroups);
 
-        // Step 5: Compile all
+        // Step 6: Compile all
     }
 
     private static function sanityCheck()
@@ -99,7 +101,7 @@ class NuxBackend
         return $result;
     }
 
-    public static function generateObjects(array|string $directory, array $objects = []) {
+    public static function generateObjects(array|string $directory, array $objects = []): array {
         // enter directory
         $workingDir = $directory;
 
@@ -116,11 +118,36 @@ class NuxBackend
         }
 
         // if flag set
-        $objects = self::generateObjects($flag, $objects);
+        $objects = self::generateObjects($directory . DIRECTORY_SEPARATOR . $flag, $objects);
 
-        // if not
-        foreach ($result as $obj) {
-            
+        // if not check for one of the definition files
+        $nux_defs = ['aliases.json', 'events.json', 'functions.json', 'triggers.json'];
+        $flag = null;
+        foreach ($nux_defs as $needle) {
+            if (in_array($needle, $result)) {
+                $flag = $needle;
+                break;
+            }
+        }
+
+        // if no def file then return to parent
+        if (is_null($flag)) {
+            return $objects;
+        }
+
+        //otherwise read def file
+        $defFile = json_decode(file_get_contents($workingDir . DIRECTORY_SEPARATOR . $flag), true);
+
+        // Create new group based on working directory
+        $t = explode(DIRECTORY_SEPARATOR, $workingDir);
+        $group = new NuxGroup(end($t));
+
+        // get reference to base group
+        
+
+        // process all def file entries
+        foreach ($defFile as $entry) {
+
         }
     }
 }

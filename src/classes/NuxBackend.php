@@ -142,12 +142,37 @@ class NuxBackend
         $t = explode(DIRECTORY_SEPARATOR, $workingDir);
         $group = new NuxGroup(end($t));
 
-        // get reference to base group
-        
+        // get reference to base group (alias, function, ect)
+        foreach ($objects as $object) {
+            if ($object->getName() == explode('.', $flag)[0]) {
+                $ref = &$object;
+            }
+        }
 
         // process all def file entries
         foreach ($defFile as $entry) {
-
+            $fileName = $workingDir . preg_replace(' ', '_', $entry['name']) . '.js';
+            switch ($flag) {
+                case 'aliases.json':
+                    $obj = new NuxAlias($entry['name'], $entry['text'], $entry['matching'], $fileName);
+                    break;
+                case 'events.json':
+                    $obj = new NuxEvent($entry['name'], $fileName, $entry['evtype'], $entry['evsubtype']);
+                    break;
+                case 'functions.json':
+                    $obj = new NuxFunction($entry['name'], $fileName);
+                    break;
+                case 'triggers.json':
+                    $obj = new NuxTrigger($entry['name'], $entry['text'], $entry['matching'], $fileName);
+                    break;
+                default:
+                    trigger_error("Unable to process objects", E_USER_ERROR);
+                    exit();
+                    break;
+            }
+            array_push($ref, $obj);
         }
+
+        return $objects;
     }
 }
